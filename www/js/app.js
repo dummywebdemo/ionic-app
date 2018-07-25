@@ -20,5 +20,48 @@ angular.module('starter', ['ionic'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+      // if(window.plugins && window.plugins.AdMob){
+          var admobid = {}
+          if (/(android)/i.test(navigator.userAgent)) {  // for android & amazon-fireos
+              admobid = {
+                  banner: 'ca-app-pub-1593585047919350/2094086582',
+                  interstitial: 'ca-app-pub-1593585047919350/8408213496',
+              }
+          }
+
+          admob.banner.config({
+              id: admobid.banner,
+              isTesting: true,
+              autoShow: true,
+          })
+          admob.banner.prepare()
+
+          admob.interstitial.config({
+              id: admobid.interstitial,
+              isTesting: true,
+              autoShow: true,
+          })
+          admob.interstitial.prepare()
+
+          // admob.banner.show()
+          // admob.interstitial.show()
+      // }
   });
 })
+
+    .controller('mycontroller', function($scope, $http, $stateParams){
+        $scope.names = [];
+        $scope.q = "ionic tutorial ";
+
+        $scope.getNames = function () {
+
+            $http.get('https://api.myjson.com/bins/bp9u2')
+                .success(function(response){
+                    console.log(response);
+                    $scope.names = response;
+                });
+        }
+        $scope.getNames();
+    });
+

@@ -2,8 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' : https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+      <title></title>
 
     <link rel="manifest" href="manifest.json">
 
@@ -32,14 +33,15 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="starter">
+  <body ng-app="starter" ng-controller="mycontroller">
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
+  <h1>Following names are coming from API Response</h1>
+
+  <div class="list card" ng-repeat="name in names">
+    {{ name.firstname }} | {{ name.lastname }}
+  </div>
+
+  <!--<button id="showAd">Show me some AD</button>-->
+
   </body>
 </html>
